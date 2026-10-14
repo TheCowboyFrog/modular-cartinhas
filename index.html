@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Galeria de baralhos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Marcação da página. Estilo: style.css · comportamento: app.js · baralhos: dados.js -->
+<header class="top wrap">
+  <div class="ownerrow" id="ownerrow" hidden=""><button type="button" class="btn sm" id="editToggle" aria-pressed="false">Editar baralhos</button></div>
+  <h1>Galeria de baralhos</h1>
+  <p class="lead">Escolha um baralho, percorra as cartas e abra qualquer uma para virá-la e ver o verso.</p>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="shelf-title">
+    <h2 id="shelf-title" class="sr-only">Baralhos disponíveis</h2>
+    <div class="shelf" id="shelf" role="group" aria-label="Baralhos disponíveis"></div>
+  </section>
+
+  <section class="dv" id="deckview" aria-labelledby="deckname">
+    <h2 id="deckname"></h2>
+    <p class="desc" id="deckdesc"></p>
+    <div class="dtools" id="dtools"></div>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar cartas"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<dialog id="viewer" aria-labelledby="vtitle">
+  <div class="vwrap">
+    <button class="vclose" id="vclose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+    </button>
+    <div class="vstage">
+      <button class="bigbtn" id="bigbtn" aria-label="Virar a carta">
+        <span class="cw"><span class="persp" style="display:block"><span class="tilt" id="tilt" style="display:block"><span class="flip" id="flip" style="display:block"></span></span></span></span>
+      </button>
+    </div>
+    <div class="vinfo">
+      <p class="vmeta" id="vmeta"></p>
+      <h3 id="vtitle"></h3>
+      <p class="vsub" id="vsub"></p>
+      <p class="vtext" id="vtext"></p>
+      <dl class="vdl" id="vdl"></dl>
+      <div class="vctrl">
+        <button class="btn primary" id="vflip">Ver verso</button>
+        <button class="btn" id="vprev">Anterior</button>
+        <button class="btn" id="vnext">Próxima</button>
+      </div>
+      <p class="vhint">As setas ← → trocam de carta e a barra de espaço vira a carta.</p>
+      <span class="sr-only" id="vstatus" aria-live="polite"></span>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="editor" aria-labelledby="etitle">
+  <div class="ewrap">
+    <form class="eform" id="eform" novalidate="">
+      <h3 id="etitle"></h3>
+      <div class="efields" id="efields"></div>
+      <p class="eerr" id="eerr" role="alert"></p>
+      <div class="efoot">
+        <button type="button" class="btn" id="ecancel">Cancelar</button>
+        <button type="submit" class="btn primary" id="esave">Salvar</button>
+      </div>
+    </form>
+    <div class="ecol"><div class="epv" id="epv"></div></div>
+  </div>
+</dialog>
+
+<dialog id="confirm" aria-labelledby="cfmmsg">
+  <div class="cfm">
+    <p id="cfmmsg"></p>
+    <div class="efoot">
+      <button type="button" class="btn" id="cfmno">Cancelar</button>
+      <button type="button" class="btn primary" id="cfmyes">Confirmar</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="ebar" id="ebar" role="region" aria-label="Publicação do modo editor">
+  <span class="st" id="estatus" aria-live="polite"></span>
+  <span class="sz" id="esize"></span>
+  <button type="button" class="btn sm" id="edisc">Descartar</button>
+  <button type="button" class="btn sm primary" id="epub">Publicar alterações</button>
+</div>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
